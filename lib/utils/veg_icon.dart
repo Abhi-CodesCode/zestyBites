@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zestybites/utils/dimensions.dart';
-import 'package:flutter_svg/svg.dart';
 
 class VegIcon extends StatelessWidget {
   final bool veg;
   final double size;
-   VegIcon({
+   const VegIcon({
     super.key,
     required this.veg,
     this.size = 0,

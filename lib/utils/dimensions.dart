@@ -28,6 +28,7 @@ class Dimensions{
   static double radius30=screenHeight/25.2;
   static double font12=screenHeight/63;
   static double font20=screenHeight/37.8;
+  static double iconSize16=screenHeight/47.2;
   static double iconSize=screenHeight/31.5;
   static double iconSize30=screenHeight/25;
   static double iconBoxSize=screenHeight/16.8;
@@ -35,10 +36,13 @@ class Dimensions{
   static double listTextBoxSize=screenHeight/7.8;
   // static double width30=screenWidth/12;
 
+
   //***FOOD PAGES
 
   //food detail page
-  static double imageHeight=screenHeight/2.3;
+  static double imageHeight=screenHeight/2.51;
+  static double bottomBarHeight=screenHeight/7;
+
 
 
 

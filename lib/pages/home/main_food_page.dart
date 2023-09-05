@@ -64,7 +64,7 @@ class MainFoodPageState extends State<MainFoodPage> {
             ],
           ),
         ),
-         Expanded(child: SingleChildScrollView(padding:EdgeInsets.only(bottom: Dimensions.height10),child: FoodPageBody())),
+         Expanded(child: SingleChildScrollView(padding:EdgeInsets.only(bottom: Dimensions.height10),child: const FoodPageBody())),
       ]),
     );
   }

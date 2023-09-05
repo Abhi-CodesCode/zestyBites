@@ -9,7 +9,7 @@ class TextAndIconWidget extends StatelessWidget {
   final Color iconColor;
   final double relativeSize; // Changed the declaration of 'relativeSize' here
 
-  const TextAndIconWidget({
+   const TextAndIconWidget({
     Key? key, // Used the correct syntax for 'key'
     required this.icon,
     required this.text,

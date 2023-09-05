@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zestybites/utils/app_color.dart';
 import 'package:zestybites/utils/dimensions.dart';
 import 'package:zestybites/widgets/big_text.dart';
+import 'package:zestybites/widgets/food_header.dart';
 import 'package:zestybites/widgets/small_text.dart';
 import 'package:zestybites/widgets/text_and_icon_widget.dart';
 
@@ -120,10 +121,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         SizedBox(height: Dimensions.width5,),
                         Padding(
                           padding: EdgeInsets.only(left: Dimensions.width10),
-                          child: SmallText(text: "with 2 times Veggies then before, A perfect burger with the goodness of spinach ,onion, Cabbage , Tomato etc."),
+                          child: SmallText(overFlow:TextOverflow.ellipsis,text: "with 2 times Veggies then before, A perfect burger with the goodness of spinach ,onion, Cabbage , Tomato etc."),
                         ),
                         SizedBox(height: Dimensions.width5,),
-                        const Row(
+                         const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TextAndIconWidget( icon: Icons.location_on,relativeSize: 0.8, text: "7.1 km", textColor: AppColor.textColor, iconColor:AppColor.mainColor, ),
@@ -213,47 +214,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
               child: Container(
                 padding: EdgeInsets.only(left: Dimensions.width15, right: Dimensions.width15, top: Dimensions.height15 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BigText(text: "PizzaHub"),
-                    SizedBox(
-                      height: Dimensions.height8,
-                    ), //for spacing
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(
-                              5,
-                              (index) =>  Icon(
-                                    Icons.star,
-                                    color: AppColor.mainColor,
-                                    size: Dimensions.height15,
-                                  )),
-                        ),
-                        SizedBox(
-                          width: Dimensions.width5,
-                        ),
-                        SmallText(text: "4.8"),
-                        SizedBox(width: Dimensions.width10),
-                        SmallText(text: "126"),
-                        SizedBox(width: Dimensions.width5),
-                        SmallText(text: "Comments")
-                      ],
-                    ),
-                    SizedBox(
-                      height:Dimensions.height8,
-                    ),
-                     const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextAndIconWidget(icon: Icons.location_on, text: "7.1 km", textColor: AppColor.textColor, iconColor:AppColor.mainColor, ),
-                        TextAndIconWidget(icon: Icons.alarm, text: "24 min", textColor: AppColor.textColor, iconColor: Colors.black),
-                        TextAndIconWidget(icon: Icons.monetization_on, text: "~\$70", textColor: AppColor.textColor, iconColor:Color.fromARGB(255, 96, 231, 17) )
-                      ],
-                    ),
-                  ],
-                ),
+                child: const FoodHeader(text: "PizzaHub",),
               ),
             ),
           ),
