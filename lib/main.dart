@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:zestybites/pages/food/food_detail_page.dart';
+import 'package:zestybites/pages/food/carousel_food_page.dart';
 import 'package:zestybites/pages/food/listed_food_page.dart';
 import 'package:zestybites/pages/home/main_food_page.dart';
 import 'package:zestybites/helper/dependencies.dart' as dependencies;

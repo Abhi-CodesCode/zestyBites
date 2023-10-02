@@ -6,7 +6,8 @@ import 'package:zestybites/widgets/expandable_text_widget.dart';
 import 'package:zestybites/widgets/navigation_icon.dart';
 
 class ListedFoodPage extends StatelessWidget {
-  const ListedFoodPage({super.key});
+  final Map<String, dynamic> pageData;
+  const ListedFoodPage({super.key, required this.pageData});
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +16,27 @@ class ListedFoodPage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
+
             toolbarHeight: 70,
-            title: const Row(
+            title:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                NavigationIcon(
-                  icon: Icons.arrow_back_rounded,
-                  size: 35,
+                GestureDetector(
+
+                  child: const NavigationIcon(
+                    icon: Icons.arrow_back_rounded,
+                    size: 33,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  }
                 ),
-                NavigationIcon(
-                  icon: Icons.shopping_cart_outlined,
-                  size: 35,
+                GestureDetector(
+                  child: const NavigationIcon(
+                    icon: Icons.shopping_cart_outlined,
+                    size: 35,
+                  ),
                 ),
               ],
             ),
@@ -43,15 +54,15 @@ class ListedFoodPage extends StatelessWidget {
                   width: double.maxFinite,
                   child: Center(
                       child: BigText(
-                    text: "PizzaHub",
+                    text: pageData['title'],
                   ))),
             ),
             backgroundColor: const Color(0xffF6B452),
             pinned: true,
             expandedHeight: Dimensions.imageHeight,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/food0.jpg",
+              background: Image.network(
+                 pageData['image'].replaceFirst("http://127.0.0.1:8000/","http://10.0.2.2:8000/"),
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -62,10 +73,13 @@ class ListedFoodPage extends StatelessWidget {
                   padding: EdgeInsets.only(top: Dimensions.height8),
                   margin: EdgeInsets.only(
                       left: Dimensions.width15, right: Dimensions.width15),
-                  child: const ExpandableTextWidget(
+                  child:  ExpandableTextWidget(
                       textHeightRatio: 1.8,
-                      text:
-                          "PizzaHub: Where Pizza Dreams Come True. Nestled in the heart of the city, PizzaHub is a haven for pizza lovers, offering a modern yet cozy interior that sets the stage for a tantalizing culinary experience. The open kitchen allows skilled chefs to craft pizzas before your eyes, sliding them into wood-fired ovens, creating an interactive and captivating atmosphere. The menu is a symphony of flavors, ranging from classic Margheritas to innovative options like BBQ Pulled Pork and Pineapple Jalapeno Fusion pizzas. Complement your meal with artisanal sodas, craft beers, or expertly curated wines. Whether you choose to dine in, take out, or have it delivered, PizzaHub embodies a celebration of pizza artistry, promising to not only delight your taste buds but also fulfill your pizza fantasies. Beyond the extraordinary food, the warm and welcoming staff add a memorable touch, reflecting their passion for pizza and dedication to impeccable service, elevating your experience. With a sincere commitment to quality ingredients, creative culinary twists, and an authentic love for pizza, PizzaHub transcends being a mere restaurant – it stands as a destination where pizza dreams manifest into reality.PizzaHub: Where Pizza Dreams Come True. Nestled in the heart of the city, PizzaHub is a haven for pizza lovers, offering a modern yet cozy interior that sets the stage for a tantalizing culinary experience. The open kitchen allows skilled chefs to craft pizzas before your eyes, sliding them into wood-fired ovens, creating an interactive and captivating atmosphere. The menu is a symphony of flavors, ranging from classic Margheritas to innovative options like BBQ Pulled Pork and Pineapple Jalapeno Fusion pizzas. Complement your meal with artisanal sodas, craft beers, or expertly curated wines. Whether you choose to dine in, take out, or have it delivered, PizzaHub embodies a celebration of pizza artistry, promising to not only delight your taste buds but also fulfill your pizza fantasies. Beyond the extraordinary food, the warm and welcoming staff add a memorable touch, reflecting their passion for pizza and dedication to impeccable service, elevating your experience. With a sincere commitment to quality ingredients, creative culinary twists, and an authentic love for pizza, PizzaHub transcends being a mere restaurant – it stands as a destination where pizza dreams manifest into reality.")))
+                      text:pageData['description']
+
+                  )
+              )
+          )
         ],
       ),
       bottomNavigationBar: Column(

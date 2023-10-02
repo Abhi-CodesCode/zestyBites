@@ -4,7 +4,9 @@ import 'package:zestybites/api/food_item.dart';
 import 'package:zestybites/utils/app_color.dart';
 import 'package:zestybites/utils/dimensions.dart';
 import 'package:zestybites/widgets/big_text.dart';
+import 'package:zestybites/widgets/carousel_navigator_object.dart';
 import 'package:zestybites/widgets/food_header.dart';
+import 'package:zestybites/widgets/list_navigator_object.dart';
 import 'package:zestybites/widgets/small_text.dart';
 import 'package:zestybites/widgets/text_and_icon_widget.dart';
 
@@ -62,7 +64,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       controller: pageController,
                       itemCount: foodItemLength,
                       itemBuilder: (context, position) {
-                        return _buildPageItem(position,snapshot);
+                        return CarouselNavigatorObject(pageData: snapshotData[position],
+                        child: _buildPageItem(position,snapshot));
                       }
                   );
 
@@ -112,47 +115,50 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             if (snapshotData.isEmpty) {
               return const Center(child: CircularProgressIndicator()); // Show a loading indicator while waiting for data.
             }
-            return Container(
-              margin: EdgeInsets.only(bottom: Dimensions.height10, left: Dimensions.width20, right: Dimensions.width20),
-              child: Row(
-                children: [
-                  // Image Part
-                  Container(
-                    width: Dimensions.listImageSize,
-                    height: Dimensions.listImageSize,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: Colors.white38,
-                      image: DecorationImage(
-                        image: NetworkImage(snapshotData[index]['image'].replaceFirst("http://127.0.0.1:8000/","http://10.0.2.2:8000/")),
-                        fit: BoxFit.cover,
+            return ListNavigatorObject(
+              pageData: snapshotData[index],
+              child: Container(
+                margin: EdgeInsets.only(bottom: Dimensions.height10, left: Dimensions.width20, right: Dimensions.width20),
+                child: Row(
+                  children: [
+                    // Image Part
+                    Container(
+                      width: Dimensions.listImageSize,
+                      height: Dimensions.listImageSize,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        color: Colors.white38,
+                        image: DecorationImage(
+                          image: NetworkImage(snapshotData[index]['image'].replaceFirst("http://127.0.0.1:8000/","http://10.0.2.2:8000/")),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  // Right Text Part
-                  Expanded(
-                    child: Container(
-                      height: Dimensions.listTextBoxSize,
-                      padding: EdgeInsets.only(top: Dimensions.height15*0.7),
-                      decoration: BoxDecoration(
-                        boxShadow: const [BoxShadow(
-                            blurRadius: 3.0,
-                            color: Color(0xFFe8e8e8),
-                            offset: Offset(0, 5)
-                        ),
-                          BoxShadow(
+                    // Right Text Part
+                    Expanded(
+                      child: Container(
+                        height: Dimensions.listTextBoxSize,
+                        padding: EdgeInsets.only(top: Dimensions.height15*0.7),
+                        decoration: BoxDecoration(
+                          boxShadow: const [BoxShadow(
                               blurRadius: 3.0,
                               color: Color(0xFFe8e8e8),
-                              offset: Offset(5, 0)
+                              offset: Offset(0, 5)
                           ),
-                        ],
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(Dimensions.radius20), bottomRight: Radius.circular(Dimensions.radius20)),
-                        color: Colors.white,
+                            BoxShadow(
+                                blurRadius: 3.0,
+                                color: Color(0xFFe8e8e8),
+                                offset: Offset(5, 0)
+                            ),
+                          ],
+                          borderRadius: BorderRadius.only(topRight: Radius.circular(Dimensions.radius20), bottomRight: Radius.circular(Dimensions.radius20)),
+                          color: Colors.white,
+                        ),
+                        child: FoodHeader(data:snapshotData[index],iconSize: 0.8,bigTextSize: 0.8,),
                       ),
-                      child: FoodHeader(snapshotData: snapshotData,index: index,iconSize: 0.8,bigTextSize: 0.8,),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },
@@ -225,8 +231,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 color: Colors.white,
               ),
               child: Container(
+
                 padding: EdgeInsets.only(left: Dimensions.width15, right: Dimensions.width15, top: Dimensions.height15 ),
-                child:  FoodHeader(snapshotData: snapshotData,index: index,),
+                child:  FoodHeader(data:snapshotData[index]),
               ),
             ),
           ),
