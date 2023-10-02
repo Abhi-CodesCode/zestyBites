@@ -13,4 +13,4 @@ Future<void> init()async{
   //Controller
   Get.lazyPut(() => FoodCarouselController(foodCarouselRepo: Get.find()));
 
-}
+} 

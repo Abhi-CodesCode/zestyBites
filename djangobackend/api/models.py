@@ -1,0 +1,13 @@
+from django.db import models
+
+# Create your models here.
+class FoodItem(models.Model):
+    title=models.CharField(max_length=255)
+    description=models.TextField()
+    price=models.DecimalField(max_digits=6,decimal_places=2)
+    rating=models.DecimalField(max_digits=2,decimal_places=1)
+    distance=models.DecimalField(max_digits=4,decimal_places=1)
+    time=models.IntegerField()
+    cost_per_person=models.IntegerField()
+    comment_count=models.IntegerField()
+    image=models.ImageField(upload_to='food_cover/')
